@@ -32,8 +32,10 @@
               <button class="btn btn-primary" type="submit">Submit</button>
             </div>
             <div class="mb-3 text-center">
-              <a href="/passwords/forgot">Forgot your password?</a><br />
-              <a href="/register?redirectURI=<%= encodeURIComponent(redirectURI || '/') %>">Need an account?</a><br />
+              <a href="/passwords/forgot">Forgot your password?</a>
+              <% if (process.env.FEATURE_REGISTRATION) { %>
+                <br /><a href="/register?redirectURI=<%= encodeURIComponent(redirectURI || '/') %>">Need an account?</a><br />
+              <% } %>
             </div>
           </form>
         </div>

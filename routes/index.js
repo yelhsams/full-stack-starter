@@ -18,7 +18,9 @@ router.use('/libraries/jquery', express.static(path.join(__dirname, '../node_mod
 /// serve some paths from other nested routers
 router.use('/login', require('./login'));
 router.use('/passwords', require('./passwords'));
-router.use('/register', require('./registrations'));
+if (process.env.FEATURE_REGISTRATION) {
+  router.use('/register', require('./registrations'));
+}
 router.use('/api', require('./api'));
 
 /// handle logging out the current user
