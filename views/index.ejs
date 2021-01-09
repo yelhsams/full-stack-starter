@@ -8,7 +8,38 @@
     </div>
     <div class="col-md-7 offset-md-1">
       <h2>Education</h2>
+      <ul id="education">
+        <% for (let item of educationItems) { %>
+          <li>
+            <h3><%= item.title %></h3>
+            <h4><%= item.subtitle %></h4>
+            <h5><%= item.place %></h5>
+            <h6><%= item.startedAt %> to <%= item.endedAt ? item.endedAt : 'Present' %></h6>
+            <p><%= item.about %></p>
+          </li>
+        <% } %>
+      </ul>
       <h2>Work Experience</h2>
+      <ul id="work">        
+      </ul>
     </div>
   </div>
 </main>
+<%- contentFor('scripts') %>
+<script type="application/javascript">
+  $(function() {
+    $.getJSON('/api/sectionItems?section=work', function(items) {
+      for (const item of items) {
+        $('#work').append(`
+          <li>
+            <h3>${item.title}</h3>
+            <h4>${item.subtitle}</h4>
+            <h5>${item.place}</h5>
+            <h6>${item.startedAt} to ${item.endedAt ? item.endedAt : 'Present'}</h6>
+            <p>${item.about}</p>
+          </li>
+        `);
+      }
+    });
+  });
+</script>

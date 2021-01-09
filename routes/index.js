@@ -4,6 +4,8 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
+const models = require('../models');
+
 /// configure serving any static file in public folder
 router.use(express.static(path.join(__dirname, '../public')));
 
@@ -27,8 +29,15 @@ router.get('/logout', function(req,res,next){
 });
 
 /// serve up the homepage
-router.get('/', function(req, res, next) {
-  res.render('index');
+router.get('/', async function(req, res, next) {
+  const educationItems = await models.SectionItem.findAll({
+    include: models.Section,
+    order: [['endedAt', 'DESC'], ['startedAt', 'DESC']],
+    where: {
+      '$Section.slug$': 'education'
+    }
+  });
+  res.render('index', { educationItems });
 });
 
 module.exports = router;
