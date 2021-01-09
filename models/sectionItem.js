@@ -15,12 +15,38 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   SectionItem.init({
-    title: DataTypes.STRING,
+    title: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Please enter a title'
+        }
+      }
+    },
     subtitle: DataTypes.STRING,
     place: DataTypes.STRING,
     about: DataTypes.TEXT,
-    startedAt: DataTypes.DATEONLY,
-    endedAt: DataTypes.DATEONLY
+    startedAt: {
+      allowNull: false,
+      type: DataTypes.DATEONLY,
+      validate: {
+        isDate: {
+          msg: 'Please enter a valid start month and year (YYYY-MM)'
+        },
+        notEmpty: {
+          msg: 'Please enter a valid start month and year (YYYY-MM)'
+        }
+      }
+    },
+    endedAt: {
+      type: DataTypes.DATEONLY,
+      validate: {
+        isDate: {
+          msg: 'Please enter a valid start month and year (YYYY-MM)'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'SectionItem',

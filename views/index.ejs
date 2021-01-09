@@ -16,6 +16,14 @@
             <h5><%= item.place %></h5>
             <h6><%= item.startedAt %> to <%= item.endedAt ? item.endedAt : 'Present' %></h6>
             <p><%= item.about %></p>
+            <% if (currentUser) { %>
+              <p><a href="/sectionItems/<%= item.id %>/edit">Edit</a></p>
+            <% } %>
+          </li>
+        <% } %>
+        <% if (currentUser) { %>
+          <li>
+            <a href="/sectionItems/new?section=education">New Item</a>
           </li>
         <% } %>
       </ul>

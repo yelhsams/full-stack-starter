@@ -16,12 +16,13 @@ router.use('/libraries/fontawesome', express.static(path.join(__dirname, '../nod
 router.use('/libraries/jquery', express.static(path.join(__dirname, '../node_modules/jquery/dist')));
 
 /// serve some paths from other nested routers
+router.use('/api', require('./api'));
 router.use('/login', require('./login'));
 router.use('/passwords', require('./passwords'));
 if (process.env.FEATURE_REGISTRATION) {
   router.use('/register', require('./registrations'));
 }
-router.use('/api', require('./api'));
+router.use('/sectionItems', require('./sectionItems'));
 
 /// handle logging out the current user
 router.get('/logout', function(req,res,next){

@@ -44,15 +44,14 @@ router.get('/reset/:token', function(req, res, next) {
 router.post('/reset/:token', function(req, res, next) {
   models.User.findOne({where: {passwordResetToken: req.params.token}}).then(function(user) {
     if (user) {
-      console.log(req.body.password, models.User.isValidPassword(req.body.password));
       if (models.User.isValidPassword(req.body.password)) {
         user.hashPassword(req.body.password).then(function() {
           req.flash('info', 'Your new password has been saved!');
           res.redirect('/login');
         });
       } else {
-        helpers.register(res, [{path: 'password', message: 'Minimum eight characters, at least one letter and one number.'}]);
         res.render('passwords/reset', {
+          error: { errors: [{path: 'password', message: 'Minimum eight characters, at least one letter and one number.'}] },
           token: req.params.token,
           isExpired: user.passwordResetTokenExpiresAt.getTime() < Date.now()
         });

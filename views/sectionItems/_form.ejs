@@ -1,0 +1,31 @@
+<div class="mb-3">
+  <label class="form-label" for="SectionId">Section</label>
+  <select class="form-select" id="SectionId" name="SectionId">
+    <% for (const section of sections) { %>
+      <option value="<%= section.id %>"<%= section.id === sectionItem.SectionId ? ' selected' : ''%>><%= section.name %></option>
+    <% } %>
+  </select>
+</div>
+<div class="mb-3">
+  <label class="form-label" for="title">Title</label>
+  <input class="form-control <%= hasError('title') ? 'is-invalid' : '' %>" id="title" name="title" type="text" value="<%= sectionItem.title %>" />
+  <%- renderErrorMessages('title') %>
+</div>
+<div class="mb-3">
+  <label class="form-label" for="place">Place</label>
+  <input class="form-control" id="place" name="place" type="text" value="<%= sectionItem.place %>" />
+</div>
+<div class="mb-3">
+  <label class="form-label" for="about">About</label>
+  <textarea class="form-control" id="about" name="about"><%= sectionItem.about %></textarea>
+</div>
+<div class="mb-3">
+  <label class="form-label" for="startedAt">Started at</label>
+  <input class="form-control <%= hasError('startedAt') ? 'is-invalid' : '' %>" id="startedAt" name="startedAt" pattern="[0-9]{4}-[0-9]{2}" placeholder="YYYY-MM" type="month" value="<%= sectionItem.startedAt ? luxon.DateTime.fromISO(sectionItem.startedAt).toFormat('yyyy-MM') : '' %>" />
+  <%- renderErrorMessages('startedAt') %>
+</div>
+<div class="mb-3">
+  <label class="form-label" for="endedAt">Ended at</label>
+  <input class="form-control <%= hasError('endedAt') ? 'is-invalid' : '' %>" id="endedAt" name="endedAt" pattern="[0-9]{4}-[0-9]{2}" placeholder="YYYY-MM" type="month" value="<%= sectionItem.endedAt ? luxon.DateTime.fromISO(sectionItem.endedAt).toFormat('yyyy-MM') : '' %>" />
+  <%- renderErrorMessages('endedAt') %>
+</div>

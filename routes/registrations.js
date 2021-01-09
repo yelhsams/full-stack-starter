@@ -9,7 +9,6 @@ const helpers = require('./helpers');
 router.get('/', function(req, res, next) {
   req.logout();
   const user = models.User.build({});
-  helpers.register(res);
   res.render('registrations/new', {
     user: user,
     redirectURI: req.query.redirectURI
@@ -51,8 +50,9 @@ router.post('/', function(req, res, next) {
       res.redirect('/login');
     }
   }).catch(function(error) {
-    helpers.register(res, errors.concat(error.errors));
+    error.errors = errors.concat(error.errors);
     res.render('registrations/new', {
+      error,
       user: user,
       redirectURI: req.body.redirectURI,
     });

@@ -4,7 +4,7 @@ const AWS = require('aws-sdk');
 const fs = require('fs-extra');
 const inflection = require('inflection');
 const _ = require('lodash');
-const mime = require('mime-types');
+const luxon = require('luxon');
 const path = require('path');
 const querystring = require('querystring');
 
@@ -46,31 +46,28 @@ module.exports.setPaginationHeaders = function(req, res, page, pages, total) {
   res.set(headers);
 }
 
-module.exports.register = function(res, errors) {
-  res.locals.inflection = inflection;
-
-  const hasError = function(name) {
-    return _.find(errors, e => e.path == name) !== undefined;
-  };
-  res.locals.hasError = hasError;
-
-  const errorMessages = function(name) {
-    return _.uniq(_.map(_.filter(errors, e => e.path == name), e => e.message));
-  };
-  res.locals.errorMessages = errorMessages;
-
-  res.locals.renderErrorMessages = function(name) {
-    if (hasError(name)) {
-      return `<div class="invalid-feedback d-block">${inflection.capitalize(errorMessages(name).join(', '))}.</div>`
-    }
-    return '';
-  }
-}
-
 module.exports.assetHelpers = function(req, res, next) {
   res.locals.assetUrl = function(urlPath) {
     return `${process.env.ASSET_HOST}${urlPath}`;
   };
+  next();
+}
+
+module.exports.errorHelpers = function(req, res, next) {
+  res.locals.inflection = inflection;
+  res.locals.luxon = luxon;
+
+  res.locals.hasError = function(name) {
+    return _.find(this.error?.errors, e => e.path == name) !== undefined;
+  };
+
+  res.locals.renderErrorMessages = function(name) {
+    if (this.hasError(name)) {
+      return `<div class="invalid-feedback d-block">${inflection.capitalize(_.uniq(_.map(_.filter(this.error?.errors, e => e.path == name), e => e.message)).join(', '))}.</div>`
+    }
+    return '';
+  }
+
   next();
 }
 
