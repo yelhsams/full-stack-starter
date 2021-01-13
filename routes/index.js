@@ -6,6 +6,9 @@ const router = express.Router();
 
 const models = require('../models');
 
+/// configure serving up a built client app
+router.use(express.static(path.join(__dirname, '../client/build')));
+
 /// configure serving any static file in public folder
 router.use(express.static(path.join(__dirname, '../public')));
 
