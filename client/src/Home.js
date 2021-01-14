@@ -1,8 +1,12 @@
 import {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
+import Api from './Api';
+import {useAuthContext} from './AuthContext';
 import me from './me.jpg';
 
 function Home() {
+  const {user} = useAuthContext();
   const [sectionItems, setSectionItems] = useState([]);
 
   useEffect(function() {
@@ -10,6 +14,16 @@ function Home() {
       .then(response => response.json())
       .then(data => setSectionItems(data));
   }, []);
+
+  const onDelete = function(sectionItem) {
+    if (window.confirm(`Are you sure you wish to delete "${sectionItem.title}"?`)) {
+      Api.sectionItems.delete(sectionItem.id)
+        .then(() => {
+          const newSectionItems = sectionItems.filter(si => si.id !== sectionItem.id);
+          setSectionItems(newSectionItems);
+        });
+    }
+  };
 
   return (
     <main className="container">
@@ -29,6 +43,12 @@ function Home() {
                 <h5>{si.place}</h5>
                 <h6>{si.startedAt} to {si.endedAt ? si.endedAt : 'Present'}</h6>
                 <p>{si.about}</p>
+                {user && (
+                  <p>
+                    <Link className="btn btn-sm btn-outline-primary" to={`/sectionItems/${si.id}/edit`}>Edit</Link>&nbsp;
+                    <button className="btn btn-sm btn-outline-danger" onClick={() => onDelete(si)} type="button">Delete</button>
+                  </p>
+                )}
               </li>
             ))}
           </ul>
@@ -41,6 +61,12 @@ function Home() {
                 <h5>{si.place}</h5>
                 <h6>{si.startedAt} to {si.endedAt ? si.endedAt : 'Present'}</h6>
                 <p>{si.about}</p>
+                {user && (
+                  <p>
+                    <Link className="btn btn-sm btn-outline-primary" to={`/sectionItems/${si.id}/edit`}>Edit</Link>&nbsp;
+                    <button className="btn btn-sm btn-outline-danger" onClick={() => onDelete(si)} type="button">Delete</button>
+                  </p>
+                )}
               </li>
             ))}
           </ul>
