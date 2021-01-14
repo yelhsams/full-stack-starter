@@ -15,7 +15,7 @@ function Home() {
     <main className="container">
       <div className="row">
         <div className="col-md-4">
-          <img className="img-fluid mb-3" src={me} alt="Photo of My Name" />
+          <img className="img-fluid mb-3" src={me} alt="My Name" />
           <h1>My Name</h1>
           <p>Something about me. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
@@ -23,7 +23,7 @@ function Home() {
           <h2>Education</h2>
           <ul id="education">
             {sectionItems.filter(si => si.Section.slug === 'education').map(si => (
-              <li>
+              <li key={si.id}>
                 <h3>{si.title}</h3>
                 <h4>{si.subtitle}</h4>
                 <h5>{si.place}</h5>
@@ -35,7 +35,7 @@ function Home() {
           <h2>Work Experience</h2>
           <ul id="work">        
             {sectionItems.filter(si => si.Section.slug === 'work').map(si => (
-              <li>
+              <li key={si.id}>
                 <h3>{si.title}</h3>
                 <h4>{si.subtitle}</h4>
                 <h5>{si.place}</h5>

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon -L -V --ignore ./migrations --ignore ./public ./bin/www"
+    "start": "nodemon -L -V --ignore ./client --ignore ./migrations --ignore ./public ./bin/www"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",

@@ -1,8 +1,11 @@
 'use strict'
 
 const express = require('express');
-const router = express.Router();
+const HttpStatus = require('http-status-codes');
+
 const interceptors = require('./interceptors');
+
+const router = express.Router();
 
 /* GET the login form */
 router.get('/', function(req, res, next) {
@@ -19,18 +22,26 @@ router.post('/', function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      let redirectURI = '/login';
-      if (req.body.redirectURI != '') {
-        redirectURI = `${redirectURI}?redirectURI=${encodeURIComponent(req.body.redirectURI)}`;
+      if (req.accepts('html')) {
+        let redirectURI = '/login';
+        if (req.body.redirectURI != '') {
+          redirectURI = `${redirectURI}?redirectURI=${encodeURIComponent(req.body.redirectURI)}`;
+        }
+        req.flash('error', 'The email and/or password was incorrect.');
+        return res.redirect(redirectURI);
+      } else {
+        return res.status(HttpStatus.UNPROCESSABLE_ENTITY).end();
       }
-      req.flash('error', 'The email and/or password was incorrect.');
-      return res.redirect(redirectURI);
     }
     req.logIn(user, function(err) {
-      if (req.body.redirectURI != '') {
-        res.redirect(req.body.redirectURI);
+      if (req.accepts('html')) {
+        if (req.body.redirectURI != '') {
+          res.redirect(req.body.redirectURI);
+        } else {
+          res.redirect('/');
+        }
       } else {
-        res.redirect('/');
+        return res.status(HttpStatus.OK).json(user);
       }
     });
   })(req, res, next);

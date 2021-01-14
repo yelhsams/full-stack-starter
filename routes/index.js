@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const HttpStatus = require('http-status-codes');
 const path = require('path');
 const router = express.Router();
 
@@ -30,8 +31,12 @@ router.use('/sectionItems', require('./sectionItems'));
 /// handle logging out the current user
 router.get('/logout', function(req,res,next){
   req.logout();
-  req.flash('info', 'You have been logged out.');
-  res.redirect('/');
+  if (req.accepts('html')) {
+    req.flash('info', 'You have been logged out.');
+    res.redirect('/');
+  } else {
+    res.status(HttpStatus.NO_CONTENT).end();
+  }
 });
 
 /// serve up the homepage

@@ -20,13 +20,18 @@ module.exports = (sequelize, DataTypes) => {
 
     static isValidPassword(password) {
       return password.match(/^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,30}$/) != null;
-    };
+    }
+
+    toJSON() {
+      const {id, firstName, lastName, email} = this.get();
+      return {id, firstName, lastName, email};
+    }
 
     hashPassword(password, options) {
       return bcrypt.hash(password, 10).then(hashedPassword => {
         return this.update({hashedPassword: hashedPassword, passwordResetTokenExpiresAt: new Date()}, options);
       });
-    };
+    }
 
     sendPasswordResetEmail() {
       return this.update({
@@ -43,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         });
       });
-    };
+    }
 
     sendWelcomeEmail() {
       return mailer.send({
