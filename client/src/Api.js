@@ -17,11 +17,22 @@ instance.interceptors.response.use(
 );
 
 const Api = {
-  login(data) {
-    return instance.post('/login', data);
+  login(email, password) {
+    return instance.post('/login', {email, password});
   },
   logout() {
     return instance.get('/logout');
+  },
+  passwords: {
+    reset(email) {
+      return instance.post('/api/passwords', {email});
+    },
+    get(token) {
+      return instance.get(`/api/passwords/${token}`);
+    },
+    update(token, password) {
+      return instance.patch(`/api/passwords/${token}`, {password});
+    }
   },
   users: {
     me() {

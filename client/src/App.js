@@ -10,6 +10,7 @@ import {AuthContextProvider} from './AuthContext';
 import Header from './Header';
 import Home from './Home';
 import Login from './Login';
+import Passwords from './Passwords';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/passwords">
+            <Passwords />
           </Route>
         </Switch>
       </Router>
