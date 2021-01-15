@@ -25,7 +25,6 @@ router.use('/login', require('./login'));
 if (process.env.FEATURE_REGISTRATION) {
   router.use('/register', require('./registrations'));
 }
-router.use('/sectionItems', require('./sectionItems'));
 
 /// handle logging out the current user
 router.get('/logout', function(req,res,next){
