@@ -21,9 +21,6 @@ router.use('/libraries/jquery', express.static(path.join(__dirname, '../node_mod
 
 /// serve some paths from other nested routers
 router.use('/api', require('./api'));
-if (process.env.FEATURE_REGISTRATION) {
-  router.use('/register', require('./registrations'));
-}
 
 /// serve up the client app for all other routes, per SPA client-side routing
 router.get('/*', function (req, res, next) {

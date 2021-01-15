@@ -23,6 +23,9 @@ const Api = {
     },
     logout() {
       return instance.get('/api/auth/logout');
+    },
+    register(data) {
+      return instance.post('/api/auth/register', data);
     }
   },
   passwords: {

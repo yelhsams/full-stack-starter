@@ -5,8 +5,6 @@ const express = require('express');
 const path = require('path');
 const cookieSession = require('cookie-session');
 const logger = require('morgan');
-const expressLayouts = require('express-ejs-layouts');
-const flash = require('connect-flash');
 const passport = require('passport');
 const fileUpload = require('express-fileupload');
 const i18n = require('i18n');
@@ -18,10 +16,6 @@ const routes = require('./routes');
 
 const app = express();
 
-/// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.use(expressLayouts);
 /// router logging output
 app.use(logger('dev'));
 /// multipart file upload support (when not uploading direct to S3)
@@ -43,8 +37,6 @@ app.use(cookieSession({
   secret: process.env.SESSION_SECRET,
   secure: process.env.NODE_ENV == 'production'
 }));
-/// support session flash messages displayed on next request
-app.use(flash());
 /// use passport for authentication
 app.use(passport.initialize());
 app.use(passport.session());
@@ -56,11 +48,8 @@ i18n.configure({
 app.use(i18n.init);
 /// add in our custom  helpers
 app.use(helpers.assetHelpers);
-app.use(helpers.errorHelpers);
 /// set up local variables commonly used in all requests
 app.use(function(req, res, next) {
-  /// set any flash messages in the session from a previous request
-  res.locals.flash = req.flash();
   /// set the current logged in user, if any
   res.locals.currentUser = req.user;
   next();

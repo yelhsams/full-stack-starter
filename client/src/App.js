@@ -11,6 +11,7 @@ import Header from './Header';
 import Home from './Home';
 import Login from './Login';
 import Passwords from './Passwords';
+import Register from './Register';
 import SectionItems from './SectionItems';
 
 function App() {
@@ -28,6 +29,11 @@ function App() {
           <Route path="/passwords">
             <Passwords />
           </Route>
+          {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && (
+            <Route path="/register">
+              <Register />
+            </Route>
+          )}
           <Route path="/sectionItems">
             <SectionItems />
           </Route>

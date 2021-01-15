@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useHistory, Link} from "react-router-dom";
+import {useHistory, Link} from 'react-router-dom';
 
 import Api from './Api';
 import {useAuthContext} from './AuthContext';
@@ -43,7 +43,6 @@ function Login() {
                 <div className="alert alert-danger">Invalid email and/or password.</div>
               )}
               <form onSubmit={onSubmit}>
-                <input type="hidden" name="redirectURI" value="" />
                 <div className="mb-3">
                   <label className="form-label" htmlFor="email">Email</label>
                   <input type="text" className="form-control" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)} />
@@ -57,6 +56,9 @@ function Login() {
                 </div>
                 <div className="mb-3 text-center">
                   <Link to="/passwords/forgot">Forgot your password?</Link>
+                  {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && (
+                    <><br /><Link to="/register">Need an account?</Link></>
+                  )}
                 </div>
               </form>
             </div>
