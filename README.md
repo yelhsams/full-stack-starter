@@ -224,8 +224,8 @@ This repository contains a "starter" project for web application development in 
 
 ## License
 
-Full-Stack Starter
-Copyright (C) 2020 <dev/Mission>
+Full-Stack Starter  
+Copyright (C) 2021 <dev/Mission>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
