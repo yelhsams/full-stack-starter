@@ -17,8 +17,10 @@ instance.interceptors.response.use(
 );
 
 const Api = {
-  login(email, password) {
-    return instance.post('/login', {email, password});
+  auth: {
+    login(email, password) {
+      return instance.post('/api/auth/login', {email, password});
+    },
   },
   logout() {
     return instance.get('/logout');

@@ -11,6 +11,7 @@ const passport = require('passport');
 const fileUpload = require('express-fileupload');
 const i18n = require('i18n');
 const bodyParser = require('body-parser');
+const HttpStatus = require('http-status-codes');
 
 const helpers = require('./routes/helpers');
 const routes = require('./routes');
@@ -74,17 +75,9 @@ app.use(function(req, res, next) {
 });
 
 /// error handler
-app.use(function(err, req, res, next) {
-  /// set locals, only providing error in development
-  res.locals.currentUser = null;
-  res.locals.flash = {};
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.locals.title = "Error!";
-
-  /// render the error page
-  res.status(err.status || 500);
-  res.render('error');
+app.use(function(err, req, res) {
+  /// render the error
+  res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
 });
 
 module.exports = app;

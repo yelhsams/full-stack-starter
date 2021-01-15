@@ -21,7 +21,6 @@ router.use('/libraries/jquery', express.static(path.join(__dirname, '../node_mod
 
 /// serve some paths from other nested routers
 router.use('/api', require('./api'));
-router.use('/login', require('./login'));
 if (process.env.FEATURE_REGISTRATION) {
   router.use('/register', require('./registrations'));
 }
@@ -37,16 +36,13 @@ router.get('/logout', function(req,res,next){
   }
 });
 
-/// serve up the homepage
-router.get('/', async function(req, res, next) {
-  const educationItems = await models.SectionItem.findAll({
-    include: models.Section,
-    order: [['endedAt', 'DESC'], ['startedAt', 'DESC']],
-    where: {
-      '$Section.slug$': 'education'
-    }
-  });
-  res.render('index', { educationItems });
+/// serve up the client app for all other routes, per SPA client-side routing
+router.get('/*', function (req, res, next) {
+  if (req.accepts('html')) {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  } else {
+    next();
+  }
 });
 
 module.exports = router;

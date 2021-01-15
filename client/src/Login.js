@@ -13,21 +13,20 @@ function Login() {
 
   const [showInvalidError, setShowInvalidError] = useState(false);
 
-  const onSubmit = function(event) {
+  const onSubmit = async function(event) {
     event.preventDefault();
     setShowInvalidError(false);
-    Api.login(email, password)
-      .then(response => {
-        authContext.setUser(response.data);
-        history.replace('/');
-      })
-      .catch(error => {
-        if (error.response && error.response.status === 422) {
-          setShowInvalidError(true);
-        } else {
-          console.log(error);
-        }
-      });
+    try {
+      const response = await Api.auth.login(email, password);
+      authContext.setUser(response.data);
+      history.replace('/');
+    } catch (error) {
+      if (error.response?.status === 422) {
+        setShowInvalidError(true);
+      } else {
+        console.log(error);
+      }
+    };
   }
 
   return (
