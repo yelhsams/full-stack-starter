@@ -46,7 +46,7 @@ i18n.configure({
   directory: path.join(__dirname, 'locales')
 });
 app.use(i18n.init);
-/// add in our custom  helpers
+/// add in our custom helpers
 app.use(helpers.assetHelpers);
 /// set up local variables commonly used in all requests
 app.use(function(req, res, next) {
