@@ -19,13 +19,11 @@ function Header() {
       });
   }, [setUser]);
 
-  const onLogout = function(event) {
+  const onLogout = async function(event) {
     event.preventDefault();
-    Api.logout()
-      .then(() => {
-        setUser(null);
-        history.push('/')
-      });
+    await Api.auth.logout();
+    setUser(null);
+    history.push('/');
   };
 
   return (

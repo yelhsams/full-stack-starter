@@ -21,9 +21,9 @@ const Api = {
     login(email, password) {
       return instance.post('/api/auth/login', {email, password});
     },
-  },
-  logout() {
-    return instance.get('/logout');
+    logout() {
+      return instance.get('/api/auth/logout');
+    }
   },
   passwords: {
     reset(email) {

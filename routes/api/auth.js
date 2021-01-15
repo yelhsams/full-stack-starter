@@ -25,4 +25,10 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+/// handle logging out the current user
+router.get('/logout', function(req, res){
+  req.logout();
+  res.status(HttpStatus.NO_CONTENT).end();
+});
+
 module.exports = router;

@@ -25,17 +25,6 @@ if (process.env.FEATURE_REGISTRATION) {
   router.use('/register', require('./registrations'));
 }
 
-/// handle logging out the current user
-router.get('/logout', function(req,res,next){
-  req.logout();
-  if (req.accepts('html')) {
-    req.flash('info', 'You have been logged out.');
-    res.redirect('/');
-  } else {
-    res.status(HttpStatus.NO_CONTENT).end();
-  }
-});
-
 /// serve up the client app for all other routes, per SPA client-side routing
 router.get('/*', function (req, res, next) {
   if (req.accepts('html')) {
