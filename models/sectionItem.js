@@ -1,7 +1,10 @@
 'use strict';
+
 const {
   Model
 } = require('sequelize');
+const {DateTime} = require('luxon');
+
 module.exports = (sequelize, DataTypes) => {
   class SectionItem extends Model {
     /**
@@ -12,6 +15,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       SectionItem.belongsTo(models.Section);
+    }
+
+    toJSON() {
+      const data = this.get();
+      if (data.startedAt) {
+        data.startedAt = DateTime.fromISO(data.startedAt).toFormat('yyyy-MM');
+      }
+      if (data.endedAt) {
+        data.endedAt = DateTime.fromISO(data.endedAt).toFormat('yyyy-MM');
+      } else {
+        data.endedAt = '';
+      }
+      return data;
     }
   };
   SectionItem.init({

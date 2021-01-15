@@ -9,7 +9,7 @@ import SectionItemForm from './SectionItemForm';
 
 function NewSectionItem() {
   const history = useHistory();
-  const [error, setError] = useState([]);
+  const [error, setError] = useState(null);
   const [sectionItem, setSectionItem] = useState(null);
   const [sections, setSections] = useState([]);
 
@@ -64,7 +64,7 @@ function NewSectionItem() {
                 <form onSubmit={onSubmit}>
                   <SectionItemForm error={error} onChange={onChange} sections={sections} sectionItem={sectionItem} />
                   <div className="mb-3">
-                    <button className="btn btn-primary" type="submit">Submit</button>
+                    <button className="btn btn-primary" type="submit">Create</button>
                   </div>
                 </form>
               )}
