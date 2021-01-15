@@ -11,6 +11,7 @@ module.exports = {
   },
   "production": {
     "dialectOptions": {
+      "rejectUnauthorized": false, // false === allow self-signed SSL certs
       "ssl": true
     },
     "use_env_variable": "DATABASE_URL"
