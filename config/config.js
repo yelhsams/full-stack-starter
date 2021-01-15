@@ -10,6 +10,7 @@ module.exports = {
     "use_env_variable": "DATABASE_TEST_URL"
   },
   "production": {
+    "ssl": true,
     "use_env_variable": "DATABASE_URL"
   }
 };
