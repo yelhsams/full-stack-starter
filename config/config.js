@@ -10,9 +10,10 @@ module.exports = {
     "use_env_variable": "DATABASE_TEST_URL"
   },
   "production": {
-    "dialectOptions": {
-      "rejectUnauthorized": false, // false === allow self-signed SSL certs
-      "ssl": true
+    "dialectOptions": {      
+      "ssl": {
+        "rejectUnauthorized": false, // false === allow self-signed SSL certs
+      }
     },
     "use_env_variable": "DATABASE_URL"
   }
