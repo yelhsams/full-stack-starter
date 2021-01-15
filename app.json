@@ -1,0 +1,36 @@
+{
+  "name": "Full Stack Starter",
+  "description": "This starter codebase includes a React SPA client and a Node/Express RESTful API endpoint that uses a Postgres SQL database.",
+  "website": "https://devmission.org/",
+  "repository": "https://github.com/dev-mission/full-stack-starter/",
+  "logo": "https://devmission.org/wp-content/uploads/2019/11/cropped-Wordpress-Logo.jpg",
+  "scripts": {
+    "postdeploy": "sequelize db:migrate; sequelize db:seed:all"
+  },
+  "env": {
+    "APP_NAME": {
+      "description": "The name of this website, displayed in email templates"
+    },
+    "SESSION_SECRET": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev",
+      "options": {
+        "version": "12"
+      }
+    },
+    {
+      "plan": "mailgun:starter"
+    }
+  ]
+}
