@@ -19,7 +19,7 @@ function Login() {
     try {
       const response = await Api.auth.login(email, password);
       authContext.setUser(response.data);
-      history.replace('/');
+      history.replace(history.location.state?.from || '/');
     } catch (error) {
       if (error.response?.status === 422) {
         setShowInvalidError(true);
@@ -36,7 +36,7 @@ function Login() {
           <div className="card">
             <div className="card-body">
               <h2 className="card-title">Log in</h2>
-              {history.location.state && history.location.state.flash && (
+              {history.location.state?.flash && (
                 <div className="alert alert-info">{history.location.state.flash}</div>
               )}
               {showInvalidError && (

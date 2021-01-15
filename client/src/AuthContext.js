@@ -1,4 +1,5 @@
 import {createContext, useContext, useState} from 'react';
+import {Route, Redirect} from 'react-router-dom';
 
 const authContext = createContext();
 
@@ -23,7 +24,29 @@ function AuthContextProvider({children}) {
   );
 }
 
+function AuthProtectedRoute({ children, ...rest }) {
+  const authContext = useAuthContext();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        authContext.user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
 export {
   useAuthContext,
-  AuthContextProvider
+  AuthContextProvider,
+  AuthProtectedRoute
 };
