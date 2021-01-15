@@ -45,6 +45,9 @@ const Api = {
     }
   },
   sectionItems: {
+    index() {
+      return instance.get('/api/sectionItems');
+    },
     create(data) {
       return instance.post('/api/sectionItems', data);
     },

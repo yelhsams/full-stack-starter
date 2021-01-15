@@ -17,6 +17,7 @@ module.exports = {
         id: 1,
         name: 'Education',
         slug: 'education',
+        position: 1,
         createdAt: now,
         updatedAt: now
       },
@@ -24,6 +25,7 @@ module.exports = {
         id: 2,
         name: 'Work Experience',
         slug: 'work',
+        position: 2,
         createdAt: now,
         updatedAt: now
       }

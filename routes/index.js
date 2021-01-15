@@ -14,10 +14,7 @@ router.use(express.static(path.join(__dirname, '../client/build')));
 router.use(express.static(path.join(__dirname, '../public')));
 
 /// serve libraries installed as node modules
-router.use('/libraries/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
-router.use('/libraries/cleave', express.static(path.join(__dirname, '../node_modules/cleave.js/dist')));
-router.use('/libraries/fontawesome', express.static(path.join(__dirname, '../node_modules/@fortawesome/fontawesome-free')));
-router.use('/libraries/jquery', express.static(path.join(__dirname, '../node_modules/jquery/dist')));
+router.use('/libraries/bootstrap', express.static(path.join(__dirname, '../client/node_modules/bootstrap/dist')));
 
 /// serve some paths from other nested routers
 router.use('/api', require('./api'));

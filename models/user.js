@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const {
   Model
 } = require('sequelize');
+const _ = require('lodash');
 const sequelizePaginate = require('sequelize-paginate')
 const uuid = require('uuid/v4');
 const mailer = require('../emails/mailer');
@@ -23,8 +24,12 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     toJSON() {
-      const {id, firstName, lastName, email} = this.get();
-      return {id, firstName, lastName, email};
+      return _.pick(this.get(), [
+        'id',
+        'firstName',
+        'lastName',
+        'email'
+      ]);
     }
 
     hashPassword(password, options) {

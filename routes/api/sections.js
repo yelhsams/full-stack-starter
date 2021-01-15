@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/', async function(req, res) {
   const sections = await models.Section.findAll({
-    order: [['name', 'ASC']]
+    order: [['position', 'ASC'], ['name', 'ASC']]
   });
   res.json(sections);
 });
