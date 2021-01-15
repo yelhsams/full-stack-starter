@@ -1,10 +1,9 @@
 import {useRouteMatch, Redirect, Route, Switch} from 'react-router-dom';
 
 import EditSectionItem from './EditSectionItem';
-import NewSectionItem from './NewSectionItem';
 
 function SectionItems() {
-  const {path, url} = useRouteMatch();
+  const {path} = useRouteMatch();
 
   return (
     <Switch>
@@ -12,7 +11,7 @@ function SectionItems() {
         <Redirect to="/" />
       </Route>
       <Route path={`${path}/new`}>
-        <NewSectionItem />
+        <EditSectionItem />
       </Route>
       <Route path={`${path}/:id/edit`}>
         <EditSectionItem />
