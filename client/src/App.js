@@ -11,6 +11,7 @@ import Header from './Header';
 import Home from './Home';
 import Login from './Login';
 import Passwords from './Passwords';
+import SectionItems from './SectionItems';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/passwords">
             <Passwords />
+          </Route>
+          <Route path="/sectionItems">
+            <SectionItems />
           </Route>
         </Switch>
       </Router>

@@ -35,6 +35,7 @@ function Home() {
         </div>
         <div className="col-md-7 offset-md-1">
           <h2>Education</h2>
+          {user && (<Link className="btn btn-sm btn-outline-primary" to={`/sectionItems/new?section=education`}>New</Link>)}
           <ul id="education">
             {sectionItems.filter(si => si.Section.slug === 'education').map(si => (
               <li key={si.id}>
@@ -53,6 +54,7 @@ function Home() {
             ))}
           </ul>
           <h2>Work Experience</h2>
+          {user && (<Link className="btn btn-sm btn-outline-primary" to={`/sectionItems/new?section=work`}>New</Link>)}
           <ul id="work">        
             {sectionItems.filter(si => si.Section.slug === 'work').map(si => (
               <li key={si.id}>

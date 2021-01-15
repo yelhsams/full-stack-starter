@@ -21,6 +21,17 @@ router.get('/', async function(req, res) {
   res.json(items);
 });
 
+router.post('/', interceptors.requireLogin, async function(req, res) {
+  req.body.endedAt = req.body.endedAt || null;
+  const sectionItem = models.SectionItem.build(req.body);
+  try {
+    await sectionItem.save();
+    res.status(HttpStatus.CREATED).end();
+  } catch (error) {
+    res.status(HttpStatus.UNPROCESSABLE_ENTITY).json(error);
+  }
+});
+
 router.get('/:id', interceptors.requireLogin, async function(req, res) {
   const sectionItem = await models.SectionItem.findByPk(req.params.id);
   if (sectionItem) {
@@ -31,6 +42,7 @@ router.get('/:id', interceptors.requireLogin, async function(req, res) {
 });
 
 router.patch('/:id', interceptors.requireLogin, async function(req, res) {
+  req.body.endedAt = req.body.endedAt || null;
   const sectionItem = await models.SectionItem.findByPk(req.params.id);
   if (sectionItem) {
     try {

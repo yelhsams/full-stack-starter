@@ -34,7 +34,21 @@ const Api = {
       return instance.patch(`/api/passwords/${token}`, {password});
     }
   },
+  sections: {
+    index() {
+      return instance.get('/api/sections');
+    }
+  },
   sectionItems: {
+    create(data) {
+      return instance.post('/api/sectionItems', data);
+    },
+    get(id) {
+      return instance.get(`/api/sectionItems/${id}`);
+    },
+    update(id, data) {
+      return instance.patch(`/api/sectionItems/${id}`, data);
+    },
     delete(id) {
       return instance.delete(`/api/sectionItems/${id}`);
     }
