@@ -1,8 +1,13 @@
 'use strict';
 
 const Email = require('email-templates');
-const nodemailer = require('nodemailer');
-const path = require('path');
+
+if (process.env.MAILGUN_SMTP_SERVER) {
+  process.env.SMTP_HOST = process.env.MAILGUN_SMTP_SERVER;
+  process.env.SMTP_PORT = process.env.MAILGUN_SMTP_PORT;
+  process.env.SMTP_USERNAME = process.env.MAILGUN_SMTP_LOGIN;
+  process.env.SMTP_PASSWORD = process.env.MAILGUN_SMTP_PASSWORD;
+}
 
 const email = new Email({
   message: {
