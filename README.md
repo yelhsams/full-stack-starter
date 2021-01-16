@@ -123,6 +123,12 @@ This repository contains a "starter" project for web application development in 
    heroku git:remote -a [YOUR APP NAME FROM STEP 2HERE]
    ```
 
+5. Once linked, you can execute Heroku CLI commands. For example, to run the user creation script on the server:
+
+   ```
+   heroku run bin/create-admin Firstname Lastname email password
+   ```
+
 ## Shell Command Quick Reference
 
  * Every directory and file on your computer has a *path* that describes its location in storage. Special path symbols include:
