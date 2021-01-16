@@ -85,9 +85,41 @@ This repository contains a "starter" project for web application development in 
 8. That's it! After all this setup is complete, the only command you need to run to get
    started again is the ```docker-compose up``` command.
 
-## Heroku Deployment
+## Heroku Deployment Setup
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+1. Create a free Heroku account at: https://signup.heroku.com/
+
+2. Click on the Deploy button below: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+   Take note of the App Name you entered (or, if left blank, was automatically generated for you).
+
+3. Install the Heroku CLI (Command Line Interface) tool: https://devcenter.heroku.com/articles/heroku-cli
+
+   On macOS you must first install Homebrew, if you don't already have it: https://brew.sh/
+
+   When successfully installed, you can execute the command:
+
+   ```
+   heroku
+   ```
+   
+   And you will see output like this:
+
+   ```
+   CLI to interact with Heroku
+
+   VERSION
+   heroku/7.47.6 darwin-x64 node-v12.16.2
+
+   USAGE
+   $ heroku [COMMAND]
+   ```
+  
+4. Link your repo directory to the Heroku deployed app:
+
+   ```
+   heroku git:remote -a [YOUR APP NAME FROM STEP 2HERE]
+   ```
 
 ## Shell Command Quick Reference
 
