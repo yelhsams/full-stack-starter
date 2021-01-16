@@ -89,7 +89,9 @@ This repository contains a "starter" project for web application development in 
 
 1. Create a free Heroku account at: https://signup.heroku.com/
 
-2. Click on the Deploy button below: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+2. Click on the Deploy button below:
+   
+   [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
    Take note of the App Name you entered (or, if left blank, was automatically generated for you).
 
