@@ -85,6 +85,10 @@ This repository contains a "starter" project for web application development in 
 8. That's it! After all this setup is complete, the only command you need to run to get
    started again is the ```docker-compose up``` command.
 
+## Heroku Deployment
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Shell Command Quick Reference
 
  * Every directory and file on your computer has a *path* that describes its location in storage. Special path symbols include:
