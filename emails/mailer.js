@@ -17,7 +17,7 @@ const email = new Email({
   transport: {
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
-    secure: process.env.NODE_ENV == 'production',
+    secure: process.env.SMTP_PORT === 465,
     auth: {
       user: process.env.SMTP_USERNAME,
       pass: process.env.SMTP_PASSWORD
