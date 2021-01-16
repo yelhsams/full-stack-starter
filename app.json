@@ -8,6 +8,10 @@
     "postdeploy": "sequelize db:migrate; sequelize db:seed:all"
   },
   "env": {
+    "REACT_APP_SITE_TITLE": {
+      "description": "The title of the website that will appear in the browser tab",
+      "value": "My Name"
+    },
     "SESSION_SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"
