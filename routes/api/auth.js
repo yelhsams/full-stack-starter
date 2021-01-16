@@ -33,7 +33,7 @@ router.get('/logout', function(req, res){
 });
 
 /// register a new user if enabled
-if (process.env.FEATURE_REGISTRATION === 'true') {
+if (process.env.REACT_APP_FEATURE_REGISTRATION === 'true') {
   router.post('/register', async function(req, res) {
     const user = models.User.build({
       firstName: req.body.firstName,

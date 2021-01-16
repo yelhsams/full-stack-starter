@@ -8,9 +8,6 @@
     "postdeploy": "sequelize db:migrate; sequelize db:seed:all"
   },
   "env": {
-    "APP_NAME": {
-      "description": "The name of this website, displayed in email templates"
-    },
     "SESSION_SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies.",
       "generator": "secret"

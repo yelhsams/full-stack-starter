@@ -6,7 +6,7 @@ const path = require('path');
 
 const email = new Email({
   message: {
-    from: `${process.env.APP_NAME} <${process.env.SMTP_FROM_EMAIL_ADDRESS}>`
+    from: `${process.env.REACT_APP_SITE_TITLE} <${process.env.SMTP_FROM_EMAIL_ADDRESS}>`
   },
   send: true,
   transport: {

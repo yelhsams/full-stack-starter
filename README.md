@@ -33,7 +33,7 @@ This repository contains a "starter" project for web application development in 
    like this, the server is running:
 
    ```
-   server_1       | 4:13:08 AM webpack.1 |  You can now view full-stack-starter-spa in the browser.
+   server_1       | 4:13:08 AM webpack.1 |  You can now view full-stack-starter in the browser.
    server_1       | 4:13:08 AM webpack.1 |    Local:            http://localhost:3000
    ```
 
@@ -91,7 +91,7 @@ This repository contains a "starter" project for web application development in 
 
 2. Click on the Deploy button below: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-   Take note of the App Name you entered (or, if left blank, was automatically generated for you).
+   In the App Name field, enter a URL-friendly name that will become part of your final url. (i.e. https://your-app-name.herokuapp.com)
 
 3. Install the Heroku CLI (Command Line Interface) tool: https://devcenter.heroku.com/articles/heroku-cli
 
@@ -252,7 +252,7 @@ This repository contains a "starter" project for web application development in 
 
   Use the *Docker QuickStart shell* installed with Docker Toolbox to open a command-line shell that launches Docker for you when it starts. On Windows, right-click on the shotcut and Run as Administrator. Note: this can take a long time to start, depending upon your computer, as it needs to start a virtual machine running Linux.
 
-  The virtual machine will have its own, separate IP address on your computer. In the ```.env``` file (see step 4 in Getting Started), replace *localhost* with *192.168.99.100* in the BASE_HOST and BASE_URL variables. To confirm that this is the correct IP address, run this command in the command-line shell:
+  The virtual machine will have its own, separate IP address on your computer. To view this IP address, run this command in the command-line shell:
 
   ```
   docker-machine ip
