@@ -1,0 +1,26 @@
+[
+  {
+    "model": "Section",
+    "data": {
+      "name": "Section 1",
+      "slug": "section-1",
+      "position": 1
+    }
+  },
+  {
+    "model": "Section",
+    "data": {
+      "name": "Section 2",
+      "slug": "section-2",
+      "position": 2
+    }
+  },
+  {
+    "model": "Section",
+    "data": {
+      "name": "Section 3",
+      "slug": "section-3",
+      "position": 3
+    }
+  }
+]
