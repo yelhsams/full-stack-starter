@@ -19,13 +19,13 @@ router.post('/', interceptors.requireLogin, async function(req, res) {
   const section = models.Section.build(req.body);
   try {
     await section.save();
-    res.status(HttpStatus.CREATED).end();
+    res.status(HttpStatus.CREATED).json(section);
   } catch (error) {
     res.status(HttpStatus.UNPROCESSABLE_ENTITY).json(error);
   }
 });
 
-router.get('/:id', interceptors.requireLogin, async function(req, res) {
+router.get('/:id', async function(req, res) {
   const section = await models.Section.findByPk(req.params.id);
   if (section) {
     await section.destroy();
