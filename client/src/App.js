@@ -14,6 +14,8 @@ import Passwords from './Passwords';
 import Register from './Register';
 import SectionItems from './SectionItems';
 import Components from './Components';
+import DevMissionDirectory from './DevMissionDirectory';
+import Sections from './Sections/Sections';
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
           <Route path="/components">
             <Components />
           </Route>
+          <Route path="/devmissiondirectory">
+            <DevMissionDirectory />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
@@ -38,6 +43,9 @@ function App() {
               <Register />
             </Route>
           )}
+          <Route path= "/sections">
+            <Sections />
+          </Route>
           <AuthProtectedRoute path="/sectionItems">
             <SectionItems />
           </AuthProtectedRoute>
