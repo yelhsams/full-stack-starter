@@ -1,6 +1,5 @@
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 
-  
 import SectionsList from './SectionsList';
 
 function Sections(){
@@ -12,7 +11,7 @@ function Sections(){
             <Route exact path = {path}>
                 <SectionsList />
             </Route>
-            <Route exact path = {`${path}/new`}>
+            <Route path = {`${path}/new`}>
 
             </Route>
 
