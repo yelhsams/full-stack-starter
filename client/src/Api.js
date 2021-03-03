@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+//axios is a library for background network calls
+
 const instance = axios.create({
   headers: {
     Accept: 'application/json',
@@ -71,6 +73,11 @@ const Api = {
     },
     delete(id) {
       return instance.delete(`/api/sectionItems/${id}`);
+    }
+  },
+  skills: {
+    index() {
+      return instance.get('/api/skills');
     }
   },
   users: {
