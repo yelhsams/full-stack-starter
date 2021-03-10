@@ -16,6 +16,7 @@ import SectionItems from './SectionItems';
 import Components from './Components';
 import DevMissionDirectory from './DevMissionDirectory';
 import Sections from './Sections/Sections';
+import Skills from './Skills/Skills';
 
 function App() {
   return (
@@ -49,6 +50,9 @@ function App() {
           <AuthProtectedRoute path="/sectionItems">
             <SectionItems />
           </AuthProtectedRoute>
+          <Route path= "/skills">
+            <Skills />
+          </Route>
         </Switch>
       </Router>
     </AuthContextProvider>
