@@ -19,7 +19,7 @@ function SkillsList() {
     async function onDelete(skill){
         if(window.confirm(`Are you sure you wish to delete ${skill.name}?`)){
             Api.skills.delete(skill.id).then(function() {
-                   const newSkills = skills.filter(s => s.id != skill.id);
+                   const newSkills = skills.filter(s => s.id !== skill.id);
                 setSkills(newSkills);
             })
         }
@@ -31,7 +31,7 @@ function SkillsList() {
             <Link className="btn btn-primary" to="/skills/new">New</Link>
             <ul>
                 {skills.map(s => (
-                    <li>
+                    <li key={s.id}>
                         <p><Link to={`/skills/${s.id}/edit`}>{s.name}, {s.position}</Link></p>
                         <p> <button onClick={() => onDelete(s)} type="button" className="btn btn-sm btn-danger">Delete</button></p>
                     </li>

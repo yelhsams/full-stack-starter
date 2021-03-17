@@ -1,5 +1,5 @@
 const express = require('express');
-
+const HttpStatus = require('http-status-codes');
 const router = express.Router();
 
 //models are javascript databases
@@ -21,7 +21,7 @@ router.post('/', async function(req, res) {
     try {
       await row.save();
       //if successful, return 201 status (CREATED), and the JSON data of the row
-      res.status(201).json(section);
+      res.status(201).json(row);
     } catch (error) {
         //if the database returned an error, print it to the console
       console.log(error);
